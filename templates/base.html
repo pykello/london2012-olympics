@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <link rel="stylesheet" media="all" href="style.css" />
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        {% block content %}
+        <h1>London 2012 Olympics Ranking Adjusted by Population</h1>
+        <p>Population of China has been taken as base, and the number of medals won by countries are adjusted using (medal_count * china_population) / (country_population) formula.</p>
+        <p>This page is automatically updated every few minutes from <a href='http://www.telegraph.co.uk/sport/olympics/medals/'>http://www.telegraph.co.uk/sport/olympics/medals/</a>. All graphics are also taken directly from there.</p>
+        <p>This was my evening project. Please share your feedback with me at hadi [AT] moshayedi [DOT] net.</p>
+        <p><b>UPDATE :</b> Please visit <a href="http://moshayedi.net/london2012/ranking-gdp.html">Ranking Adjusted by GDP</a> page too.</a></p>
+        <table id="newspaper-a">
+            <thead>
+                <tr>
+                    <th> Rank </th>
+                    <th> Country </th>
+                    <th> <img src="http://www.telegraph.co.uk/template/ver1-0/i/olympics/medals/goldmedal.png" />Adjusted Gold </th>
+                    <th> <img src="http://www.telegraph.co.uk/template/ver1-0/i/olympics/medals/silvermedal.png" />Adjusted Silver </th>
+                    <th> <img src="http://www.telegraph.co.uk/template/ver1-0/i/olympics/medals/bronzemedal.png" />Adjusted Bronze </th>
+                    <th> Population </th>
+                </tr>
+            </thead>
+            {% for record in records %}
+                <tr>
+                    <td> {{ record.rank }} </td>
+                    <td> <img src='{{ record.flag }}' /> {{ record.country }}</td>
+                    <td style="text-align:center;"> {{ record.adjusted_gold }} </td>
+                    <td style="text-align:center;"> {{ record.adjusted_silver }} </td>
+                    <td style="text-align:center;"> {{ record.adjusted_bronze }} </td>
+                    <td> {{ population[record.country] }} </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% endblock %}
+        <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33991424-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    </body>
+</html>

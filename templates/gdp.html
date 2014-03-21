@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    London 2012 Olympics Ranking Adjusted by GD</title>
+{% endblock %}
+
+{% block content %}
+    <h1>London 2012 Olympics Ranking Adjusted by GDP</h1>
+
+    <p>GDP of United States has been taken as base, and the number of medals won by countries are adjusted using (medal_count * us_gdp) / (country_gdp) formula.</p>
+    <p>This page is automatically updated every few minutes from <a href='http://www.telegraph.co.uk/sport/olympics/medals/'>http://www.telegraph.co.uk/sport/olympics/medals/</a>. All graphics are also taken directly from there.</p>
+    <p>This was my evening project. Please share your feedback with me at hadi [AT] moshayedi [DOT] net.</p>
+    <p>Please visit <a href='http://www.moshayedi.net/london2012'>Ranking Adjusted by Population</a> page too.</p>
+
+    <table id="newspaper-a">
+        <thead>
+            <tr>
+                <th> Rank </th>
+                <th> Country </th>
+                <th> <img src="http://www.telegraph.co.uk/template/ver1-0/i/olympics/medals/goldmedal.png" />Adjusted Gold </th>
+                <th> <img src="http://www.telegraph.co.uk/template/ver1-0/i/olympics/medals/silvermedal.png" />Adjusted Silver </th>
+                <th> <img src="http://www.telegraph.co.uk/template/ver1-0/i/olympics/medals/bronzemedal.png" />Adjusted Bronze </th>
+                <th> Real Total Medals  </th>
+                <th> Expected Medals </th>
+                <th> GDP </th>
+            </tr>
+        </thead>
+        {% for record in records %}
+            <tr>
+                <td> {{ record.rank }} </td>
+                <td> <img src='{{ record.flag }}' /> {{ record.country }}</td>
+                <td style="text-align:center;"> {{ record.adjusted_gold }} </td>
+                <td style="text-align:center;"> {{ record.adjusted_silver }} </td>
+                <td style="text-align:center;"> {{ record.adjusted_bronze }} </td>
+                <td style="text-align:center;"> {{ record.total_medals }} </td>
+                <td style="text-align:center;"> {{ record.expected_medals|round(1) }} </td>
+                <td> {{ gdp[record.country] }} </td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+{% endblock %}
