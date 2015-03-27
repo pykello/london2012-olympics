@@ -3,8 +3,8 @@ London 2012 Olympics Tools
 
 This program automatically generates two HTML reports:
 
-	* Population adjusted medals ranking table for London 2012 olympics,
-	* GDP adjusted medals ranking table for London 2012 olympics,
+ * Population adjusted medals ranking table for London 2012 olympics,
+ * GDP adjusted medals ranking table for London 2012 olympics,
 
 Source for population and GDP information is Wikipedia, and they're locally stored at data.py.
 
